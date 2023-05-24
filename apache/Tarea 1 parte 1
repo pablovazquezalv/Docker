@@ -1,0 +1,12 @@
+3 servidores el primero con la imagen con docker run, el segundo con docker compose y en el docker compose espeficifico la imagen,el tercero con el docker file
+
+
+1. Docker run
+
+$ docker run -d --name my-apache-app -p 8080:80 httpd:2.4
+
+ingresar con mi ip, y el puerto por ejemplo:
+
+http://192.168.255.132:8080/
+
+2.Docker compose

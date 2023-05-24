@@ -1,0 +1,47 @@
+services:
+# first, we define the three mongo servers that will act as replicas
+# here, we steup the hostname ports, and startup command
+# which is the same as discussed in the previous section
+  mongo1:
+    hostname: mongo1
+    image: mongo
+    expose:
+      - 27017
+    container_name: mongo1
+    ports:
+      - 30001:27017 
+    restart: always
+    command: mongod --replSet rs0 --bind_ip_all
+  mongo2:
+    hostname: mongo2
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30002:27017
+    restart: always
+    container_name: mongo2
+    command: mongod --replSet rs0 --bind_ip_all
+  mongo3:
+    hostname: mongo3
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 30003:27017
+    container_name: mongo3
+    restart: always
+    command: mongod --replSet rs0 --bind_ip_all
+
+networks:
+  default:
+    driver: bridge
+
+
+ # mongo2 ya hecho eso sacamos la ip de estas madres
+ # docker inspect mongo2
+ #  despues en la maquina 1(mongo1) vamo ejecutar este comando
+ # docker exec mongo1  ping 172.25.0.2
+
+# si te dice algo que el pin usa estos dos comando, dentro del contenedor apt-get update
+#apt-get install inetutils-ping

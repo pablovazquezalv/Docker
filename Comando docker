@@ -1,0 +1,79 @@
+// muestra todas las imagenes
+docker images
+
+//descargar la imagen
+docker pull node
+
+//descargar la imagen con la version
+docker pull node:18
+
+//eliminar images
+docker images rm node
+
+
+
+//crear contenedor
+//primero bajar la imagen
+//docker create imagenausar
+
+docker create mongo
+
+//iniciar contenedor
+docker start id
+
+//mostrar los contenedores que se estan corriendo
+docker ps
+
+//detener el contenedor
+docker stop id
+
+//mostrar todos los contenedores
+docker ps -a
+
+//eliminar contenedor
+docker rm idcontenedor
+
+//crear con nombre despues la imagen
+docker create --name monguito mongo
+
+// el primero puerto donde instalamos docker el segundo para mapear mas nombre
+docker create -p27017:27017 --name monguito mongo
+
+docker logs monguito
+
+//descarga imagen,crea cotenedor
+docker run mongo
+
+//descargar imgen distach segundo plano
+docker run -d mongo
+
+
+////////DOCKERFILE
+donde viene
+FROM node:18
+
+//meter codigo fuente
+RUN mkdir -p /home/app
+
+// 
+COPY . /home/app
+
+//EXPONER UN PUERTO
+EXPOSE 80 
+
+
+//EL COMANDO A EJECUTAR PARA QUE NUESTRA APP CORRA
+CMD ["node","/home/app/index.js"]
+
+///
+docker network ls
+
+//crear red
+docker network create mired
+//borrar red
+docke rm network mired
+
+
+//crear imagenes apartir de un archivo dockerfile mas dos argumentos el nombre y la ruta
+
+docker build -t miapp:1 .
